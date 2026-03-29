@@ -3,382 +3,343 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youooo Cloud V1</title>
+  <title>Youooo Cloud V2</title>
   <meta
     name="description"
-    content="Youooo Cloud is a practical cloud learning platform covering AWS, DevOps, Kubernetes, labs, projects, and certification-focused learning."
+    content="Youooo Cloud V2 - Learn AWS, DevOps, Kubernetes, labs, projects, final exam, and certificate through a real cloud academy experience."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="site-shell">
+  <div class="app-shell">
     <header class="topbar">
-      <div class="brand-wrap">
+      <div class="brand">
         <div class="brand-logo">Y</div>
         <div>
           <h1>Youooo Cloud</h1>
-          <p>AWS • DevOps • Kubernetes • Labs • Projects</p>
+          <p>AWS • DevOps • Kubernetes • Labs • Exam • Certificate</p>
         </div>
       </div>
 
-      <nav class="top-nav">
-        <a href="#tracks">Tracks</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#labs">Labs</a>
-        <a href="#projects">Projects</a>
-        <a href="#future">Future</a>
-      </nav>
+      <div class="topbar-actions">
+        <button id="themeToggle" class="ghost-btn">Toggle Theme</button>
+        <button id="resetProgressBtn" class="danger-btn">Reset Progress</button>
+      </div>
     </header>
 
     <section class="hero">
-      <div class="hero-left">
-        <span class="pill">Cloud Academy V1</span>
-        <h2>Learn cloud skills through practical roadmaps, labs, and projects.</h2>
+      <div class="hero-card">
+        <span class="pill">Cloud Academy V2</span>
+        <h2>Learn cloud step by step with lessons, labs, projects, and proof.</h2>
         <p>
-          Youooo Cloud is built to help learners move from cloud basics to
-          real-world engineering skills using structured tracks across AWS,
-          DevOps, Kubernetes, and hands-on practice.
+          Study AWS, DevOps, and Kubernetes through structured lessons, guided labs,
+          portfolio-style projects, a final exam, and a completion certificate.
         </p>
-
-        <div class="hero-actions">
-          <a class="primary-btn" href="#tracks">Explore Tracks</a>
-          <a class="ghost-btn" href="#projects">See Projects</a>
-        </div>
 
         <div class="hero-stats">
           <div class="stat-card">
-            <span>Tracks</span>
-            <strong>4</strong>
+            <span class="stat-label">Lessons</span>
+            <strong id="statLessons">0</strong>
           </div>
           <div class="stat-card">
-            <span>Labs</span>
-            <strong>8</strong>
+            <span class="stat-label">Completed</span>
+            <strong id="statCompleted">0</strong>
           </div>
           <div class="stat-card">
-            <span>Projects</span>
-            <strong>6</strong>
+            <span class="stat-label">Labs Done</span>
+            <strong id="statLabs">0</strong>
           </div>
           <div class="stat-card">
-            <span>Level</span>
-            <strong>Beginner → Advanced</strong>
+            <span class="stat-label">Exam Score</span>
+            <strong id="statExamScore">0%</strong>
           </div>
-        </div>
-      </div>
-
-      <div class="hero-right">
-        <div class="hero-panel">
-          <div class="mini-label">Why this platform</div>
-          <h3>Cloud learning should feel practical, structured, and job-relevant.</h3>
-          <p>
-            This platform is designed around the skills people actually need:
-            cloud fundamentals, AWS services, DevOps workflows, containerization,
-            and Kubernetes deployment thinking.
-          </p>
-          <ul>
-            <li>Structured learning tracks</li>
-            <li>Hands-on lab ideas</li>
-            <li>Portfolio-style project ideas</li>
-            <li>Career-focused direction</li>
-          </ul>
+          <div class="stat-card">
+            <span class="stat-label">Progress</span>
+            <strong id="statProgress">0%</strong>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="tracks" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Learning Tracks</span>
-          <h2>Main cloud learning paths</h2>
-          <p>Follow a path based on what you want to build and where you want to go.</p>
-        </div>
+    <nav class="tabs-panel panel">
+      <div class="tabs-row">
+        <button class="tab-btn active" data-tab="academyTab">Academy</button>
+        <button class="tab-btn" data-tab="roadmapTab">Roadmap</button>
+        <button class="tab-btn" data-tab="labsTab">Labs</button>
+        <button class="tab-btn" data-tab="projectsTab">Projects</button>
+        <button class="tab-btn" data-tab="examTab">Final Exam</button>
+        <button class="tab-btn" data-tab="certificateTab">Certificate</button>
       </div>
+    </nav>
 
-      <div class="track-grid">
-        <article class="track-card featured-card">
-          <div class="track-top">
-            <span class="track-badge">Core Track</span>
-            <span class="track-status">Start Here</span>
+    <main>
+      <section id="academyTab" class="tab-content active">
+        <div class="main-grid">
+          <aside class="sidebar panel">
+            <div class="sidebar-top">
+              <h3>Cloud Curriculum</h3>
+              <input
+                id="lessonSearch"
+                type="text"
+                placeholder="Search lessons..."
+                class="search-input"
+              />
+              <div class="level-filters">
+                <button class="filter-btn active" data-level="All">All</button>
+                <button class="filter-btn" data-level="Beginner">Beginner</button>
+                <button class="filter-btn" data-level="Intermediate">Intermediate</button>
+                <button class="filter-btn" data-level="Advanced">Advanced</button>
+              </div>
+            </div>
+
+            <div id="lessonList" class="lesson-list"></div>
+          </aside>
+
+          <section class="content-column">
+            <article class="lesson-panel panel">
+              <div class="lesson-header">
+                <div>
+                  <span id="lessonLevelBadge" class="pill">Beginner</span>
+                  <h2 id="lessonTitle">Select a lesson</h2>
+                  <p id="lessonSummary" class="muted">
+                    Pick a lesson from the left to start learning.
+                  </p>
+                </div>
+
+                <div class="lesson-actions">
+                  <button id="markCompleteBtn" class="primary-btn">Mark Complete</button>
+                </div>
+              </div>
+
+              <div id="lessonObjectives" class="lesson-objectives"></div>
+
+              <div class="lesson-section">
+                <h3>Lesson</h3>
+                <div id="lessonContent" class="lesson-content">
+                  <p>Welcome to Youooo Cloud Academy.</p>
+                </div>
+              </div>
+
+              <div class="lesson-section">
+                <h3>Example / Key Idea</h3>
+                <pre id="lessonCodeBlock" class="code-block"><code>Lesson example will appear here.</code></pre>
+              </div>
+
+              <div class="lesson-section">
+                <h3>Quick Quiz</h3>
+                <div id="quizContainer" class="quiz-container"></div>
+              </div>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <section id="roadmapTab" class="tab-content">
+        <div class="panel">
+          <div class="section-header">
+            <div>
+              <span class="pill">Roadmap</span>
+              <h2>Cloud learning roadmap</h2>
+              <p class="muted">Follow the path from foundations to cloud engineer thinking.</p>
+            </div>
           </div>
-          <h3>AWS Foundations</h3>
-          <p>
-            Learn core cloud ideas and AWS services including IAM, EC2, S3, VPC,
-            Route 53, CloudWatch, and security basics.
-          </p>
-          <div class="tag-row">
-            <span class="tag">AWS</span>
-            <span class="tag">Cloud Basics</span>
-            <span class="tag">Security</span>
+
+          <div id="roadmapGrid" class="roadmap-grid"></div>
+        </div>
+      </section>
+
+      <section id="labsTab" class="tab-content">
+        <div class="panel">
+          <div class="section-header">
+            <div>
+              <span class="pill">Labs</span>
+              <h2>Guided cloud labs</h2>
+              <p class="muted">Practice with step-by-step exercises and expected outcomes.</p>
+            </div>
           </div>
-        </article>
 
-        <article class="track-card">
-          <div class="track-top">
-            <span class="track-badge">Builder Track</span>
-            <span class="track-status">Practical</span>
+          <div class="lab-layout">
+            <div class="lab-sidebar">
+              <div id="labList" class="challenge-list"></div>
+            </div>
+
+            <div class="lab-main">
+              <div class="challenge-card">
+                <span id="labLevelBadge" class="pill">Beginner</span>
+                <h3 id="labTitle">Choose a lab</h3>
+                <p id="labPrompt" class="muted">Select a lab from the left.</p>
+
+                <div class="challenge-section">
+                  <h4>Goal</h4>
+                  <div id="labDescription" class="lesson-content"></div>
+                </div>
+
+                <div class="challenge-section">
+                  <h4>Prerequisites</h4>
+                  <div id="labPrereqs" class="mini-box"></div>
+                </div>
+
+                <div class="challenge-section">
+                  <h4>Steps</h4>
+                  <div id="labSteps" class="lesson-content"></div>
+                </div>
+
+                <div class="challenge-section">
+                  <h4>Expected Result</h4>
+                  <div id="labResult" class="mini-box"></div>
+                </div>
+
+                <div class="challenge-actions">
+                  <button id="markLabDoneBtn" class="primary-btn">Mark Lab Done</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3>DevOps Workflow</h3>
-          <p>
-            Learn Git, CI/CD thinking, deployment flow, automation basics,
-            environment handling, and operational discipline.
-          </p>
-          <div class="tag-row">
-            <span class="tag">CI/CD</span>
-            <span class="tag">Automation</span>
-            <span class="tag">Delivery</span>
+        </div>
+      </section>
+
+      <section id="projectsTab" class="tab-content">
+        <div class="panel">
+          <div class="section-header">
+            <div>
+              <span class="pill">Projects</span>
+              <h2>Portfolio-style cloud projects</h2>
+              <p class="muted">Turn your learning into job-ready projects.</p>
+            </div>
           </div>
-        </article>
 
-        <article class="track-card">
-          <div class="track-top">
-            <span class="track-badge">Infrastructure Track</span>
-            <span class="track-status">Hands-on</span>
+          <div id="projectGrid" class="project-grid"></div>
+        </div>
+      </section>
+
+      <section id="examTab" class="tab-content">
+        <div class="panel">
+          <div class="section-header">
+            <div>
+              <span class="pill">Final Exam</span>
+              <h2>Test your cloud knowledge</h2>
+              <p class="muted">Answer all questions and check your score.</p>
+            </div>
+            <div class="exam-side-stats">
+              <div class="mini-metric">
+                <span>Best Score</span>
+                <strong id="bestExamScore">0%</strong>
+              </div>
+            </div>
           </div>
-          <h3>Kubernetes Essentials</h3>
-          <p>
-            Understand containers, pods, deployments, services, ingress,
-            scaling, cluster basics, and how modern workloads are managed.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Kubernetes</span>
-            <span class="tag">Containers</span>
-            <span class="tag">Scaling</span>
+
+          <div id="examContainer" class="exam-container"></div>
+
+          <div class="exam-actions">
+            <button id="submitExamBtn" class="primary-btn">Submit Final Exam</button>
+            <button id="resetExamBtn" class="ghost-btn">Reset Answers</button>
           </div>
-        </article>
 
-        <article class="track-card">
-          <div class="track-top">
-            <span class="track-badge">Career Track</span>
-            <span class="track-status">Job Focused</span>
+          <div id="examResultBox" class="exam-result-box muted">
+            Your exam result will appear here.
           </div>
-          <h3>Cloud Engineer Path</h3>
-          <p>
-            Bring everything together into a career path with projects,
-            deployment thinking, troubleshooting, and architecture practice.
-          </p>
-          <div class="tag-row">
-            <span class="tag">Career</span>
-            <span class="tag">Projects</span>
-            <span class="tag">Cloud Engineer</span>
+        </div>
+      </section>
+
+      <section id="certificateTab" class="tab-content">
+        <div class="panel">
+          <div class="section-header">
+            <div>
+              <span class="pill">Certificate</span>
+              <h2>Generate your certificate</h2>
+              <p class="muted">Create a shareable completion certificate for your cloud path.</p>
+            </div>
           </div>
-        </article>
-      </div>
-    </section>
 
-    <section id="roadmap" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Roadmap</span>
-          <h2>Cloud learning roadmap</h2>
-          <p>A simple path from cloud basics to real-world cloud work.</p>
-        </div>
-      </div>
+          <div class="certificate-layout">
+            <div class="certificate-form-card">
+              <label class="field-label" for="studentNameInput">Your Name</label>
+              <input
+                id="studentNameInput"
+                class="search-input"
+                type="text"
+                placeholder="Enter your full name"
+              />
 
-      <div class="roadmap-grid">
-        <div class="roadmap-card">
-          <h3>Stage 1: Foundations</h3>
-          <ul>
-            <li>What cloud computing is</li>
-            <li>Regions, availability zones, shared responsibility</li>
-            <li>AWS core services overview</li>
-            <li>Basic security mindset</li>
-          </ul>
-        </div>
+              <label class="field-label" for="certificateTrackSelect">Track</label>
+              <select id="certificateTrackSelect" class="search-input">
+                <option value="Cloud Foundations Track">Cloud Foundations Track</option>
+                <option value="AWS + DevOps Track">AWS + DevOps Track</option>
+                <option value="Full Cloud Academy Track">Full Cloud Academy Track</option>
+              </select>
 
-        <div class="roadmap-card">
-          <h3>Stage 2: AWS Core Services</h3>
-          <ul>
-            <li>EC2, S3, IAM, VPC</li>
-            <li>Load balancers and DNS basics</li>
-            <li>Monitoring with CloudWatch</li>
-            <li>Storage and networking concepts</li>
-          </ul>
-        </div>
+              <div class="certificate-actions">
+                <button id="generateCertificateBtn" class="primary-btn">Generate Certificate</button>
+                <button id="printCertificateBtn" class="ghost-btn">Print / Save PDF</button>
+              </div>
 
-        <div class="roadmap-card">
-          <h3>Stage 3: DevOps and Deployment</h3>
-          <ul>
-            <li>Git workflow</li>
-            <li>Build and deployment thinking</li>
-            <li>CI/CD fundamentals</li>
-            <li>Environment and release discipline</li>
-          </ul>
-        </div>
+              <div class="certificate-metrics">
+                <div class="mini-metric">
+                  <span>Lessons Done</span>
+                  <strong id="certificateLessonsDone">0</strong>
+                </div>
+                <div class="mini-metric">
+                  <span>Labs Done</span>
+                  <strong id="certificateLabsDone">0</strong>
+                </div>
+                <div class="mini-metric">
+                  <span>Best Exam</span>
+                  <strong id="certificateExamDone">0%</strong>
+                </div>
+                <div class="mini-metric">
+                  <span>Status</span>
+                  <strong id="certificateStatusText">In Progress</strong>
+                </div>
+              </div>
+            </div>
 
-        <div class="roadmap-card">
-          <h3>Stage 4: Containers and Kubernetes</h3>
-          <ul>
-            <li>Docker basics</li>
-            <li>Pods, deployments, services</li>
-            <li>Configuration and scaling</li>
-            <li>Cluster operations mindset</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+            <div id="certificatePreview" class="certificate-preview">
+              <div class="certificate-inner">
+                <div class="cert-border">
+                  <div class="cert-topline">YOUOOO ACADEMY</div>
+                  <div class="cert-badge-row">
+                    <span class="cert-badge">Cloud</span>
+                    <span class="cert-badge">AWS</span>
+                    <span class="cert-badge">DevOps</span>
+                  </div>
+                  <h2>Certificate of Achievement</h2>
+                  <p class="cert-text">This is proudly awarded to</p>
+                  <h3 id="certificateNamePreview">Your Name Here</h3>
+                  <p class="cert-text">
+                    for successfully completing the
+                    <strong id="certificateTrackPreview">Full Cloud Academy Track</strong>
+                  </p>
+                  <p class="cert-text">
+                    Lessons completed:
+                    <strong id="certificateLessonsPreview">0</strong>
+                    • Labs completed:
+                    <strong id="certificateLabsPreview">0</strong>
+                    • Best exam:
+                    <strong id="certificateExamPreview">0%</strong>
+                  </p>
 
-    <section id="labs" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Labs</span>
-          <h2>Hands-on practice labs</h2>
-          <p>These labs are designed to build real confidence, not just theory.</p>
+                  <div class="cert-signature-row">
+                    <div class="cert-signature">
+                      <div class="signature-line"></div>
+                      <span>Date</span>
+                      <strong id="certificateDatePreview">--</strong>
+                    </div>
+                    <div class="cert-signature">
+                      <div class="signature-line"></div>
+                      <span>Issued by</span>
+                      <strong>Youooo Cloud Academy</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="lab-grid">
-        <div class="lab-card">
-          <h3>Lab 1: Launch an EC2 instance</h3>
-          <p>Create a virtual server, connect to it, and understand security group basics.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 2: Create an S3 static site</h3>
-          <p>Host a simple site with object storage and understand public access carefully.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 3: Build IAM users and roles</h3>
-          <p>Practice least privilege and understand users, groups, and roles.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 4: Create a VPC design</h3>
-          <p>Map public/private subnets, routes, and internet access basics.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 5: Containerize an app</h3>
-          <p>Understand how an app is packaged into a container workflow.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 6: Write a simple CI/CD flow</h3>
-          <p>Connect code change to build-and-deploy thinking.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 7: Deploy to Kubernetes</h3>
-          <p>Practice deployments, services, and rollout ideas.</p>
-        </div>
-        <div class="lab-card">
-          <h3>Lab 8: Monitor cloud health</h3>
-          <p>Use logs and metrics thinking to understand system behavior.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Projects</span>
-          <h2>Portfolio-style cloud projects</h2>
-          <p>Projects are where cloud learning becomes job-ready proof.</p>
-        </div>
-      </div>
-
-      <div class="project-grid">
-        <article class="project-card">
-          <h3>Project 1: Static website on AWS</h3>
-          <p>Host a website using S3 and connect it to a clean delivery path.</p>
-          <ul>
-            <li>Storage-based hosting</li>
-            <li>Public delivery thinking</li>
-            <li>Basic DNS understanding</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <h3>Project 2: Linux web server deployment</h3>
-          <p>Launch a Linux server, install a web service, and expose it securely.</p>
-          <ul>
-            <li>Compute basics</li>
-            <li>Security groups</li>
-            <li>Operational steps</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <h3>Project 3: CI/CD demo pipeline</h3>
-          <p>Show how code moves from repo to deployment using a simple pipeline idea.</p>
-          <ul>
-            <li>Git-based flow</li>
-            <li>Automation mindset</li>
-            <li>Release discipline</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <h3>Project 4: Container app deployment</h3>
-          <p>Package an app in a container and prepare it for modern hosting.</p>
-          <ul>
-            <li>Docker basics</li>
-            <li>Image thinking</li>
-            <li>Service portability</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <h3>Project 5: Kubernetes app rollout</h3>
-          <p>Deploy an app to a Kubernetes environment with service exposure.</p>
-          <ul>
-            <li>Deployments</li>
-            <li>Scaling concepts</li>
-            <li>Service routing</li>
-          </ul>
-        </article>
-
-        <article class="project-card">
-          <h3>Project 6: Cloud engineer portfolio stack</h3>
-          <p>Combine AWS, Linux, CI/CD, and Kubernetes into one showcase project.</p>
-          <ul>
-            <li>Architecture thinking</li>
-            <li>Operational design</li>
-            <li>Portfolio proof</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section id="future" class="section-block">
-      <div class="section-head">
-        <div>
-          <span class="pill">Future Versions</span>
-          <h2>What V2 and beyond can add</h2>
-          <p>This V1 is the base. The next versions can make it much stronger.</p>
-        </div>
-      </div>
-
-      <div class="future-grid">
-        <div class="future-card">
-          <h3>Cloud quizzes and exams</h3>
-          <p>Add certification-style quizzes, checkpoints, and final assessments.</p>
-        </div>
-        <div class="future-card">
-          <h3>Interactive cloud diagrams</h3>
-          <p>Add clickable AWS and Kubernetes architecture views for better learning.</p>
-        </div>
-        <div class="future-card">
-          <h3>Progress and certificates</h3>
-          <p>Add academy-style progress tracking and printable completion certificates.</p>
-        </div>
-        <div class="future-card">
-          <h3>Job-ready cloud path</h3>
-          <p>Add interview questions, role maps, and cloud engineer resume preparation.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-block cta-block">
-      <div class="cta-card">
-        <span class="pill">Next Move</span>
-        <h2>Use this as the cloud branch of Youooo Academy.</h2>
-        <p>
-          Launch V1 first. Then connect it into your academy homepage and later
-          expand it with labs, exams, diagrams, and cloud engineer pathways.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#tracks">Start with tracks</a>
-          <a class="ghost-btn" href="#projects">Review projects</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="footer">
-      <p>Youooo Cloud • Practical cloud learning for AWS, DevOps, and Kubernetes</p>
+      <p>Youooo Cloud • Real cloud learning with lessons, labs, projects, exam, and certificate</p>
     </footer>
   </div>
 
