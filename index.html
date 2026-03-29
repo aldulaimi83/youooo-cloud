@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youooo Cloud V2</title>
+  <title>Youooo Cloud V2.1</title>
   <meta
     name="description"
-    content="Youooo Cloud V2 - Learn AWS, DevOps, Kubernetes, labs, projects, final exam, and certificate through a real cloud academy experience."
+    content="Youooo Cloud V2.1 - Learn AWS, DevOps, and Kubernetes with lessons, diagrams, commands, labs, projects, exam, and certificate."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -22,6 +22,7 @@
       </div>
 
       <div class="topbar-actions">
+        <button id="startPathBtn" class="primary-btn">Start Beginner Path</button>
         <button id="themeToggle" class="ghost-btn">Toggle Theme</button>
         <button id="resetProgressBtn" class="danger-btn">Reset Progress</button>
       </div>
@@ -29,11 +30,12 @@
 
     <section class="hero">
       <div class="hero-card">
-        <span class="pill">Cloud Academy V2</span>
-        <h2>Learn cloud step by step with lessons, labs, projects, and proof.</h2>
+        <span class="pill">Cloud Academy V2.1 Pro</span>
+        <h2>Learn cloud with real lessons, diagrams, commands, labs, and proof.</h2>
         <p>
           Study AWS, DevOps, and Kubernetes through structured lessons, guided labs,
-          portfolio-style projects, a final exam, and a completion certificate.
+          architecture diagrams, hands-on command examples, a final exam, and a
+          completion certificate.
         </p>
 
         <div class="hero-stats">
@@ -121,13 +123,24 @@
               </div>
 
               <div class="lesson-section">
-                <h3>Example / Key Idea</h3>
+                <h3>Architecture Diagram</h3>
+                <div id="lessonDiagram" class="diagram-box"></div>
+              </div>
+
+              <div class="lesson-section">
+                <h3>Hands-On Commands / Examples</h3>
                 <pre id="lessonCodeBlock" class="code-block"><code>Lesson example will appear here.</code></pre>
               </div>
 
               <div class="lesson-section">
-                <h3>Quick Quiz</h3>
+                <h3>Why This Matters</h3>
+                <div id="lessonWhyMatters" class="mini-box"></div>
+              </div>
+
+              <div class="lesson-section">
+                <h3>Lesson Quiz</h3>
                 <div id="quizContainer" class="quiz-container"></div>
+                <div id="quizScoreBox" class="quiz-score-box muted">Answer the lesson quiz to see your score.</div>
               </div>
             </article>
           </section>
@@ -182,6 +195,11 @@
                 <div class="challenge-section">
                   <h4>Steps</h4>
                   <div id="labSteps" class="lesson-content"></div>
+                </div>
+
+                <div class="challenge-section">
+                  <h4>Commands / Example Actions</h4>
+                  <pre id="labCommands" class="code-block"></pre>
                 </div>
 
                 <div class="challenge-section">
@@ -317,6 +335,10 @@
                     • Best exam:
                     <strong id="certificateExamPreview">0%</strong>
                   </p>
+                  <p class="cert-text">
+                    Certificate ID:
+                    <strong id="certificateIdPreview">YC-0000</strong>
+                  </p>
 
                   <div class="cert-signature-row">
                     <div class="cert-signature">
@@ -339,7 +361,7 @@
     </main>
 
     <footer class="footer">
-      <p>Youooo Cloud • Real cloud learning with lessons, labs, projects, exam, and certificate</p>
+      <p>Youooo Cloud • Real cloud learning with diagrams, commands, labs, exam, and certificate</p>
     </footer>
   </div>
 
