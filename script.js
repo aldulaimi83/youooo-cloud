@@ -9,28 +9,60 @@ const lessons = [
       <p>Cloud computing means using computing resources like servers, storage, and networking over the internet instead of buying and managing everything yourself.</p>
       <p>Instead of purchasing physical servers upfront, you can rent what you need when you need it.</p>
       <ul>
-        <li><strong>On-demand:</strong> you can create resources when needed</li>
+        <li><strong>On-demand:</strong> create resources when needed</li>
         <li><strong>Scalable:</strong> grow or shrink based on demand</li>
         <li><strong>Pay-as-you-go:</strong> pay for what you use</li>
       </ul>
       <p>This matters because it helps companies move faster and avoid large upfront infrastructure costs.</p>
     `,
+    diagram: `User
+  |
+Internet
+  |
+Cloud Provider
+  |
+Compute | Storage | Network | Security`,
     example: `Traditional IT:
 Buy servers → install hardware → maintain equipment
 
 Cloud:
 Create resources online → use immediately → scale as needed`,
-    quiz: {
-      question: "Which best describes cloud computing?",
-      options: [
-        "Buying physical servers only",
-        "Renting computing resources over the internet",
-        "Using computers without internet",
-        "A type of programming language"
-      ],
-      answer: 1,
-      explanation: "Cloud computing means using internet-based computing resources on demand."
-    }
+    whyMatters: `This topic matters because cloud computing is the base for modern infrastructure jobs. It is asked in entry-level cloud interviews and helps you understand why companies use AWS, Azure, and GCP instead of building everything physically.`,
+    quiz: [
+      {
+        question: "Which best describes cloud computing?",
+        options: [
+          "Buying physical servers only",
+          "Renting computing resources over the internet",
+          "Using computers without internet",
+          "A type of programming language"
+        ],
+        answer: 1,
+        explanation: "Cloud computing means using internet-based computing resources on demand."
+      },
+      {
+        question: "Which is a major benefit of cloud computing?",
+        options: [
+          "No security responsibilities ever",
+          "On-demand scalability",
+          "No internet needed",
+          "Only physical access"
+        ],
+        answer: 1,
+        explanation: "Scalability is one of the biggest cloud benefits."
+      },
+      {
+        question: "Why do companies often use cloud?",
+        options: [
+          "To avoid using any software",
+          "To reduce flexibility",
+          "To move faster and avoid large upfront infrastructure cost",
+          "To stop monitoring"
+        ],
+        answer: 2,
+        explanation: "Cloud helps companies move faster with less initial hardware cost."
+      }
+    ]
   },
   {
     id: 2,
@@ -49,23 +81,44 @@ Create resources online → use immediately → scale as needed`,
       </ul>
       <p>AWS matters because many companies build and run applications on it.</p>
     `,
+    diagram: `AWS
+├── Compute (EC2)
+├── Storage (S3)
+├── Security (IAM)
+├── Networking (VPC)
+└── Monitoring (CloudWatch)`,
     example: `AWS categories:
 - Compute
 - Storage
 - Networking
 - Security
 - Monitoring`,
-    quiz: {
-      question: "What does AWS stand for?",
-      options: [
-        "Advanced Web System",
-        "Amazon Web Services",
-        "Automated Work Server",
-        "Application Web Storage"
-      ],
-      answer: 1,
-      explanation: "AWS stands for Amazon Web Services."
-    }
+    whyMatters: `AWS is one of the top cloud platforms in the job market. Even if a company uses another provider, AWS helps you understand common cloud patterns and service categories.`,
+    quiz: [
+      {
+        question: "What does AWS stand for?",
+        options: [
+          "Advanced Web System",
+          "Amazon Web Services",
+          "Automated Work Server",
+          "Application Web Storage"
+        ],
+        answer: 1,
+        explanation: "AWS stands for Amazon Web Services."
+      },
+      {
+        question: "Which AWS service is used for storage?",
+        options: ["EC2", "S3", "IAM", "VPC"],
+        answer: 1,
+        explanation: "S3 is AWS object storage."
+      },
+      {
+        question: "Which AWS service is used for permissions?",
+        options: ["IAM", "S3", "CloudWatch", "Route 53"],
+        answer: 0,
+        explanation: "IAM handles identity and access management."
+      }
+    ]
   },
   {
     id: 3,
@@ -83,22 +136,54 @@ Create resources online → use immediately → scale as needed`,
       </ul>
       <p>The key idea is <strong>least privilege</strong>: only give the permissions needed.</p>
     `,
+    diagram: `Person / App
+    |
+  IAM Identity
+    |
+ Policy / Role
+    |
+Allowed AWS Actions`,
     example: `Bad practice:
 Give admin access to everyone
 
 Better practice:
 Give only required permissions for a task`,
-    quiz: {
-      question: "What is the main goal of IAM?",
-      options: [
-        "To host websites",
-        "To control access and permissions",
-        "To create databases",
-        "To compress files"
-      ],
-      answer: 1,
-      explanation: "IAM controls identities and permissions in the cloud."
-    }
+    whyMatters: `IAM is one of the most important topics in cloud interviews and real operations. Misconfigured permissions can create major security risks.`,
+    quiz: [
+      {
+        question: "What is the main goal of IAM?",
+        options: [
+          "To host websites",
+          "To control access and permissions",
+          "To create databases",
+          "To compress files"
+        ],
+        answer: 1,
+        explanation: "IAM controls identities and permissions in the cloud."
+      },
+      {
+        question: "What does least privilege mean?",
+        options: [
+          "No permissions for anyone",
+          "Give full admin access",
+          "Only give permissions needed for the task",
+          "Use only root account"
+        ],
+        answer: 2,
+        explanation: "Least privilege means only the needed permissions."
+      },
+      {
+        question: "What is a role in IAM?",
+        options: [
+          "A storage bucket",
+          "A set of permissions that can be assumed",
+          "A DNS record",
+          "A server image"
+        ],
+        answer: 1,
+        explanation: "Roles define permissions that identities can assume."
+      }
+    ]
   },
   {
     id: 4,
@@ -117,21 +202,43 @@ Give only required permissions for a task`,
       </ul>
       <p>EC2 is flexible, but it also means you are responsible for managing the operating system and server software.</p>
     `,
-    example: `Common EC2 use:
-- Linux web server
-- Application server
-- Testing environment`,
-    quiz: {
-      question: "What is EC2 mainly used for?",
-      options: [
-        "Object storage only",
-        "Managing DNS only",
-        "Running virtual servers",
-        "Creating spreadsheets"
-      ],
-      answer: 2,
-      explanation: "EC2 provides virtual server instances in AWS."
-    }
+    diagram: `Internet
+   |
+Security Group
+   |
+EC2 Instance
+   |
+OS + App + Logs`,
+    example: `ssh -i mykey.pem ec2-user@YOUR_PUBLIC_IP
+sudo yum update -y
+sudo yum install nginx -y
+sudo systemctl start nginx`,
+    whyMatters: `EC2 is one of the first AWS services many learners use. It is common in labs, projects, interviews, and real cloud engineering tasks.`,
+    quiz: [
+      {
+        question: "What is EC2 mainly used for?",
+        options: [
+          "Object storage only",
+          "Managing DNS only",
+          "Running virtual servers",
+          "Creating spreadsheets"
+        ],
+        answer: 2,
+        explanation: "EC2 provides virtual server instances in AWS."
+      },
+      {
+        question: "What protects inbound traffic to EC2?",
+        options: ["IAM groups", "Security groups", "S3 buckets", "CloudWatch alarms"],
+        answer: 1,
+        explanation: "Security groups control inbound and outbound traffic."
+      },
+      {
+        question: "What do you often choose before launching EC2?",
+        options: ["A movie file", "An AMI image", "A spreadsheet", "A Kubernetes pod"],
+        answer: 1,
+        explanation: "An AMI is commonly selected before launch."
+      }
+    ]
   },
   {
     id: 5,
@@ -149,21 +256,51 @@ Give only required permissions for a task`,
       </ul>
       <p>S3 is not the same as a traditional file server. It is object storage, not a normal local filesystem.</p>
     `,
-    example: `S3 common uses:
+    diagram: `S3 Bucket
+├── index.html
+├── image.png
+├── backup.zip
+└── logs.txt`,
+    example: `Typical S3 uses:
 - Static website hosting
 - File backup
 - Image and video storage`,
-    quiz: {
-      question: "What does S3 store?",
-      options: [
-        "Only databases",
-        "Objects inside buckets",
-        "Only virtual machines",
-        "Only passwords"
-      ],
-      answer: 1,
-      explanation: "S3 stores objects inside buckets."
-    }
+    whyMatters: `S3 is one of the most common AWS services and shows up in many real systems for storage, backup, and static content delivery.`,
+    quiz: [
+      {
+        question: "What does S3 store?",
+        options: [
+          "Only databases",
+          "Objects inside buckets",
+          "Only virtual machines",
+          "Only passwords"
+        ],
+        answer: 1,
+        explanation: "S3 stores objects inside buckets."
+      },
+      {
+        question: "What is a bucket?",
+        options: [
+          "A container for objects",
+          "A VM type",
+          "A subnet",
+          "A log file"
+        ],
+        answer: 0,
+        explanation: "Buckets hold S3 objects."
+      },
+      {
+        question: "Which is a common S3 use case?",
+        options: [
+          "Running Linux kernel updates directly",
+          "Static website hosting",
+          "Replacing IAM",
+          "Creating security groups"
+        ],
+        answer: 1,
+        explanation: "S3 is commonly used for static website hosting."
+      }
+    ]
   },
   {
     id: 6,
@@ -181,21 +318,43 @@ Give only required permissions for a task`,
       </ul>
       <p>A strong cloud engineer understands networking, because many cloud problems are really networking problems.</p>
     `,
+    diagram: `Internet
+   |
+Internet Gateway
+   |
+VPC
+├── Public Subnet  -> Load Balancer
+└── Private Subnet -> App / DB`,
     example: `Basic VPC design:
 VPC
 - Public subnet for load balancer
 - Private subnet for app/database`,
-    quiz: {
-      question: "What is a VPC?",
-      options: [
-        "A storage bucket",
-        "A virtual network in AWS",
-        "A programming language",
-        "A type of laptop"
-      ],
-      answer: 1,
-      explanation: "A VPC is a virtual private cloud network in AWS."
-    }
+    whyMatters: `VPC knowledge is essential for AWS architecture and troubleshooting. Many “cloud” issues are actually traffic, subnet, route, or security boundary problems.`,
+    quiz: [
+      {
+        question: "What is a VPC?",
+        options: [
+          "A storage bucket",
+          "A virtual network in AWS",
+          "A programming language",
+          "A type of laptop"
+        ],
+        answer: 1,
+        explanation: "A VPC is a virtual private cloud network in AWS."
+      },
+      {
+        question: "Which subnet usually hosts internet-facing resources?",
+        options: ["Private subnet", "Public subnet", "IAM subnet", "S3 subnet"],
+        answer: 1,
+        explanation: "Public subnets are used for internet-facing resources."
+      },
+      {
+        question: "What decides where traffic goes in a VPC?",
+        options: ["Object metadata", "Route table", "CloudWatch", "Container image"],
+        answer: 1,
+        explanation: "Route tables define traffic paths."
+      }
+    ]
   },
   {
     id: 7,
@@ -213,21 +372,48 @@ VPC
       </ul>
       <p>Monitoring matters because you cannot manage what you cannot see.</p>
     `,
+    diagram: `App / EC2 / Service
+      |
+ Metrics + Logs
+      |
+  CloudWatch
+      |
+ Alarm / Dashboard / Visibility`,
     example: `Examples:
 - CPU > 80%
 - Error logs increasing
 - Disk space low`,
-    quiz: {
-      question: "Why is monitoring important?",
-      options: [
-        "It replaces networking",
-        "It gives visibility into system behavior",
-        "It deletes logs",
-        "It only helps with billing"
-      ],
-      answer: 1,
-      explanation: "Monitoring helps you understand how systems behave and when issues happen."
-    }
+    whyMatters: `Monitoring is a major part of real operations. You need visibility to detect issues, understand performance, and react before users feel the pain.`,
+    quiz: [
+      {
+        question: "Why is monitoring important?",
+        options: [
+          "It replaces networking",
+          "It gives visibility into system behavior",
+          "It deletes logs",
+          "It only helps with billing"
+        ],
+        answer: 1,
+        explanation: "Monitoring helps you understand system behavior and issues."
+      },
+      {
+        question: "Which is an example of a metric?",
+        options: ["CPU usage", "A PDF file", "A subnet", "A route table"],
+        answer: 0,
+        explanation: "CPU usage is a common metric."
+      },
+      {
+        question: "What do alarms do?",
+        options: [
+          "Delete systems",
+          "Notify when thresholds are crossed",
+          "Replace IAM roles",
+          "Build containers"
+        ],
+        answer: 1,
+        explanation: "Alarms notify when monitored conditions are met."
+      }
+    ]
   },
   {
     id: 8,
@@ -245,19 +431,46 @@ VPC
       </ul>
       <p>The big idea is reliable delivery, not just faster delivery.</p>
     `,
+    diagram: `Code Commit
+   |
+Build + Test
+   |
+Package
+   |
+Deploy
+   |
+Monitor`,
     example: `Simple CI/CD flow:
-Code change → test → build → deploy`,
-    quiz: {
-      question: "What is one main goal of CI/CD?",
-      options: [
-        "Make deployments more reliable and automated",
-        "Remove all monitoring",
-        "Replace cloud storage",
-        "Turn servers into laptops"
-      ],
-      answer: 0,
-      explanation: "CI/CD helps automate and improve software delivery reliability."
-    }
+git push origin main
+run tests
+build artifact
+deploy safely`,
+    whyMatters: `DevOps and CI/CD are highly job-relevant because teams need safe, repeatable, and automated delivery pipelines.`,
+    quiz: [
+      {
+        question: "What is one main goal of CI/CD?",
+        options: [
+          "Make deployments more reliable and automated",
+          "Remove all monitoring",
+          "Replace cloud storage",
+          "Turn servers into laptops"
+        ],
+        answer: 0,
+        explanation: "CI/CD helps automate and improve software delivery reliability."
+      },
+      {
+        question: "What does CI usually include?",
+        options: ["Manual paper forms", "Testing and integration", "Replacing DNS", "Deleting code"],
+        answer: 1,
+        explanation: "Continuous Integration usually includes test and merge workflows."
+      },
+      {
+        question: "What is a main DevOps value?",
+        options: ["More manual handoffs", "Better collaboration and automation", "Avoiding all changes", "Ignoring operations"],
+        answer: 1,
+        explanation: "DevOps improves delivery through collaboration and automation."
+      }
+    ]
   },
   {
     id: 9,
@@ -275,19 +488,43 @@ Code change → test → build → deploy`,
       </ul>
       <p>Containers matter because modern apps are often built, shipped, and deployed this way.</p>
     `,
-    example: `Container workflow:
-Source code → Docker image → run container`,
-    quiz: {
-      question: "Why are containers useful?",
-      options: [
-        "They help applications run consistently across environments",
-        "They replace the internet",
-        "They only store videos",
-        "They disable automation"
-      ],
-      answer: 0,
-      explanation: "Containers make application packaging and consistency easier."
-    }
+    diagram: `Source Code
+   |
+Dockerfile
+   |
+Docker Image
+   |
+Container Runtime
+   |
+Running App`,
+    example: `docker build -t myapp .
+docker run -p 8080:80 myapp`,
+    whyMatters: `Containers are everywhere in modern platform engineering, DevOps, and Kubernetes environments. They are common in technical interviews and real deployments.`,
+    quiz: [
+      {
+        question: "Why are containers useful?",
+        options: [
+          "They help applications run consistently across environments",
+          "They replace the internet",
+          "They only store videos",
+          "They disable automation"
+        ],
+        answer: 0,
+        explanation: "Containers make packaging and consistency easier."
+      },
+      {
+        question: "What commonly defines how a Docker image is built?",
+        options: ["Route table", "Dockerfile", "IAM policy", "Bucket policy"],
+        answer: 1,
+        explanation: "Dockerfile commonly defines how an image is built."
+      },
+      {
+        question: "What does docker run do?",
+        options: ["Creates a subnet", "Runs a container from an image", "Creates IAM users", "Deletes storage"],
+        answer: 1,
+        explanation: "docker run starts a container."
+      }
+    ]
   },
   {
     id: 10,
@@ -304,22 +541,49 @@ Source code → Docker image → run container`,
       </ul>
       <p>Kubernetes matters because managing many containers manually becomes hard very quickly.</p>
     `,
-    example: `Kubernetes handles:
-- scaling
-- rollout
-- self-healing
-- service exposure`,
-    quiz: {
-      question: "What is Kubernetes mainly used for?",
-      options: [
-        "Editing images",
-        "Managing containerized applications at scale",
-        "Replacing IAM",
-        "Writing spreadsheets"
-      ],
-      answer: 1,
-      explanation: "Kubernetes helps orchestrate and manage containers."
-    }
+    diagram: `Deployment
+   |
+ ReplicaSet
+   |
+ Pods
+   |
+ Service
+   |
+ Users / Internal Traffic`,
+    example: `kubectl get pods
+kubectl get deployments
+kubectl get services`,
+    whyMatters: `Kubernetes is a high-value skill in cloud and platform roles. Even basic understanding of pods, services, and deployments adds strong job relevance.`,
+    quiz: [
+      {
+        question: "What is Kubernetes mainly used for?",
+        options: [
+          "Editing images",
+          "Managing containerized applications at scale",
+          "Replacing IAM",
+          "Writing spreadsheets"
+        ],
+        answer: 1,
+        explanation: "Kubernetes helps orchestrate and manage containers."
+      },
+      {
+        question: "What is a pod?",
+        options: [
+          "A DNS zone",
+          "The smallest deployable unit in Kubernetes",
+          "An AWS region",
+          "A VM type"
+        ],
+        answer: 1,
+        explanation: "Pods are the smallest deployable Kubernetes unit."
+      },
+      {
+        question: "What gives stable network access to pods?",
+        options: ["Service", "Bucket", "Alarm", "Policy"],
+        answer: 0,
+        explanation: "A Service exposes pods in a stable way."
+      }
+    ]
   },
   {
     id: 11,
@@ -337,19 +601,49 @@ Source code → Docker image → run container`,
       </ul>
       <p>This is a core idea in cloud architecture and production systems.</p>
     `,
+    diagram: `Users
+  |
+Load Balancer
+ /   |   \\
+App1 App2 App3`,
     example: `Traffic flow:
 Users → Load Balancer → Multiple app servers`,
-    quiz: {
-      question: "Why use a load balancer?",
-      options: [
-        "To store files",
-        "To distribute traffic across multiple targets",
-        "To replace DNS",
-        "To remove security groups"
-      ],
-      answer: 1,
-      explanation: "Load balancers distribute traffic to improve performance and availability."
-    }
+    whyMatters: `Load balancing is a basic architecture concept that shows up in AWS design, production reliability, and cloud engineering interviews.`,
+    quiz: [
+      {
+        question: "Why use a load balancer?",
+        options: [
+          "To store files",
+          "To distribute traffic across multiple targets",
+          "To replace DNS",
+          "To remove security groups"
+        ],
+        answer: 1,
+        explanation: "Load balancers distribute traffic for performance and availability."
+      },
+      {
+        question: "One benefit of load balancing is:",
+        options: [
+          "One server handles everything",
+          "Improved availability",
+          "No need for monitoring",
+          "No need for scaling"
+        ],
+        answer: 1,
+        explanation: "Load balancing improves uptime and resilience."
+      },
+      {
+        question: "What can load balancers send traffic to?",
+        options: [
+          "Targets like servers or containers",
+          "Only PDF files",
+          "Only IAM roles",
+          "Only route tables"
+        ],
+        answer: 0,
+        explanation: "Targets can include servers, instances, or containers."
+      }
+    ]
   },
   {
     id: 12,
@@ -367,22 +661,53 @@ Users → Load Balancer → Multiple app servers`,
       </ul>
       <p>The best cloud work comes from combining technical skill with engineering judgment.</p>
     `,
+    diagram: `Security
+   + Reliability
+   + Cost
+   + Scalability
+   + Observability
+   = Good Cloud Engineering`,
     example: `Good cloud questions:
 - Is this secure?
 - Is this scalable?
 - Is this observable?
 - Is this cost-aware?`,
-    quiz: {
-      question: "What makes a strong cloud engineer?",
-      options: [
-        "Only memorizing service names",
-        "Understanding systems, tradeoffs, security, and operations",
-        "Avoiding monitoring",
-        "Ignoring reliability"
-      ],
-      answer: 1,
-      explanation: "Strong cloud engineers combine knowledge with real engineering thinking."
-    }
+    whyMatters: `This mindset is what separates someone who memorizes services from someone who can design, troubleshoot, and improve real systems.`,
+    quiz: [
+      {
+        question: "What makes a strong cloud engineer?",
+        options: [
+          "Only memorizing service names",
+          "Understanding systems, tradeoffs, security, and operations",
+          "Avoiding monitoring",
+          "Ignoring reliability"
+        ],
+        answer: 1,
+        explanation: "Strong cloud engineers combine knowledge with engineering thinking."
+      },
+      {
+        question: "Which is an important engineering tradeoff?",
+        options: [
+          "Speed, cost, and reliability",
+          "Ignoring security",
+          "Only choosing expensive tools",
+          "Never monitoring"
+        ],
+        answer: 0,
+        explanation: "Tradeoffs often involve speed, cost, and reliability."
+      },
+      {
+        question: "What should a cloud engineer ask?",
+        options: [
+          "Is this secure and scalable?",
+          "Can I avoid logs forever?",
+          "Can I remove all permissions?",
+          "Can I skip architecture?"
+        ],
+        answer: 0,
+        explanation: "Strong engineers ask security, scalability, and observability questions."
+      }
+    ]
   }
 ];
 
@@ -431,9 +756,7 @@ const labs = [
     level: "Beginner",
     title: "Lab 1: Launch an EC2 Instance",
     prompt: "Practice launching a basic Linux server in AWS.",
-    description: `
-      <p>Create a basic EC2 instance and understand the main launch choices.</p>
-    `,
+    description: `<p>Create a basic EC2 instance and understand the main launch choices.</p>`,
     prereqs: "AWS account, basic AWS console access, understanding of EC2 lesson.",
     steps: `
       <ol>
@@ -446,6 +769,10 @@ const labs = [
         <li>Launch the instance and note the public IP.</li>
       </ol>
     `,
+    commands: `ssh -i mykey.pem ec2-user@YOUR_PUBLIC_IP
+sudo yum update -y
+sudo yum install nginx -y
+sudo systemctl start nginx`,
     result: "A running EC2 instance that you can identify and manage from the AWS console."
   },
   {
@@ -453,9 +780,7 @@ const labs = [
     level: "Beginner",
     title: "Lab 2: Create an S3 Static Site",
     prompt: "Use object storage to understand static hosting concepts.",
-    description: `
-      <p>Create an S3 bucket and prepare it for simple static website hosting.</p>
-    `,
+    description: `<p>Create an S3 bucket and prepare it for simple static website hosting.</p>`,
     prereqs: "AWS account, basic S3 understanding.",
     steps: `
       <ol>
@@ -466,6 +791,13 @@ const labs = [
         <li>Test the endpoint and confirm the page loads.</li>
       </ol>
     `,
+    commands: `Example file:
+index.html
+
+Open S3 console
+Create bucket
+Upload file
+Enable static website hosting`,
     result: "A simple static page served from S3."
   },
   {
@@ -473,9 +805,7 @@ const labs = [
     level: "Beginner",
     title: "Lab 3: Create IAM Users and Policies",
     prompt: "Practice access control basics.",
-    description: `
-      <p>Create a user and attach only the permissions needed for a limited task.</p>
-    `,
+    description: `<p>Create a user and attach only the permissions needed for a limited task.</p>`,
     prereqs: "IAM lesson understanding.",
     steps: `
       <ol>
@@ -486,6 +816,10 @@ const labs = [
         <li>Compare least privilege vs admin access.</li>
       </ol>
     `,
+    commands: `Console flow:
+IAM → Users → Create user
+Attach policy
+Review access`,
     result: "A user with controlled access instead of full unnecessary permissions."
   },
   {
@@ -493,9 +827,7 @@ const labs = [
     level: "Intermediate",
     title: "Lab 4: Design a Basic VPC Layout",
     prompt: "Build networking understanding through a simple design.",
-    description: `
-      <p>Map a VPC with public and private subnet thinking.</p>
-    `,
+    description: `<p>Map a VPC with public and private subnet thinking.</p>`,
     prereqs: "VPC basics lesson.",
     steps: `
       <ol>
@@ -506,6 +838,12 @@ const labs = [
         <li>Understand where internet access should and should not exist.</li>
       </ol>
     `,
+    commands: `Conceptual setup:
+VPC
+Public subnet
+Private subnet
+Route table
+Internet gateway`,
     result: "A simple network design that separates public and private resources."
   },
   {
@@ -513,9 +851,7 @@ const labs = [
     level: "Intermediate",
     title: "Lab 5: Monitor EC2 with CloudWatch",
     prompt: "Learn basic observability.",
-    description: `
-      <p>Use CloudWatch to review metrics and understand system visibility.</p>
-    `,
+    description: `<p>Use CloudWatch to review metrics and understand system visibility.</p>`,
     prereqs: "EC2 and CloudWatch basics.",
     steps: `
       <ol>
@@ -525,6 +861,11 @@ const labs = [
         <li>Create a simple alarm conceptually or practically.</li>
       </ol>
     `,
+    commands: `Watch for:
+CPUUtilization
+NetworkIn
+NetworkOut
+Create alarm threshold`,
     result: "Visibility into instance behavior and the basics of alarm thinking."
   },
   {
@@ -532,9 +873,7 @@ const labs = [
     level: "Intermediate",
     title: "Lab 6: Design a CI/CD Flow",
     prompt: "Think through automated delivery.",
-    description: `
-      <p>Map how code should move from repo to release using CI/CD ideas.</p>
-    `,
+    description: `<p>Map how code should move from repo to release using CI/CD ideas.</p>`,
     prereqs: "DevOps basics.",
     steps: `
       <ol>
@@ -544,6 +883,12 @@ const labs = [
         <li>Describe how failures should stop the process.</li>
       </ol>
     `,
+    commands: `git add .
+git commit -m "change"
+git push origin main
+
+Then:
+test → build → deploy`,
     result: "A basic CI/CD design mindset for reliable delivery."
   },
   {
@@ -551,9 +896,7 @@ const labs = [
     level: "Advanced",
     title: "Lab 7: Containerize an App",
     prompt: "Understand packaging for portability.",
-    description: `
-      <p>Prepare a simple application to run in a container-based workflow.</p>
-    `,
+    description: `<p>Prepare a simple application to run in a container-based workflow.</p>`,
     prereqs: "Docker/container lesson.",
     steps: `
       <ol>
@@ -563,6 +906,8 @@ const labs = [
         <li>Run the container locally or reason through the flow.</li>
       </ol>
     `,
+    commands: `docker build -t myapp .
+docker run -p 8080:80 myapp`,
     result: "An application packaged in a container-friendly way."
   },
   {
@@ -570,9 +915,7 @@ const labs = [
     level: "Advanced",
     title: "Lab 8: Kubernetes Deployment Thinking",
     prompt: "Learn how an app is represented in Kubernetes.",
-    description: `
-      <p>Understand how deployments, pods, and services work together.</p>
-    `,
+    description: `<p>Understand how deployments, pods, and services work together.</p>`,
     prereqs: "Kubernetes basics lesson.",
     steps: `
       <ol>
@@ -582,6 +925,9 @@ const labs = [
         <li>Consider update and rollback behavior.</li>
       </ol>
     `,
+    commands: `kubectl get pods
+kubectl get deployments
+kubectl get services`,
     result: "A basic mental model of how a Kubernetes-hosted app is deployed and exposed."
   }
 ];
@@ -668,116 +1014,16 @@ const projects = [
 ];
 
 const finalExamQuestions = [
-  {
-    id: 1,
-    question: "What is one major benefit of cloud computing?",
-    options: [
-      "Only buying more hardware",
-      "On-demand scalable resources",
-      "Removing all security needs",
-      "Avoiding networking"
-    ],
-    answer: 1
-  },
-  {
-    id: 2,
-    question: "What does IAM mainly control?",
-    options: [
-      "Video streaming",
-      "Access and permissions",
-      "Laptop performance",
-      "Code formatting"
-    ],
-    answer: 1
-  },
-  {
-    id: 3,
-    question: "What is EC2 used for?",
-    options: [
-      "Running virtual servers",
-      "Only DNS records",
-      "Only object storage",
-      "Only certificates"
-    ],
-    answer: 0
-  },
-  {
-    id: 4,
-    question: "What does S3 store?",
-    options: [
-      "Objects in buckets",
-      "Only Kubernetes pods",
-      "Only passwords",
-      "Only IP addresses"
-    ],
-    answer: 0
-  },
-  {
-    id: 5,
-    question: "What is a VPC?",
-    options: [
-      "A virtual network",
-      "A video processor",
-      "A code editor",
-      "A logging format"
-    ],
-    answer: 0
-  },
-  {
-    id: 6,
-    question: "Why is CloudWatch useful?",
-    options: [
-      "It replaces IAM",
-      "It provides monitoring and visibility",
-      "It removes all alarms",
-      "It only runs containers"
-    ],
-    answer: 1
-  },
-  {
-    id: 7,
-    question: "What is one main goal of CI/CD?",
-    options: [
-      "Make delivery more reliable and automated",
-      "Stop all deployments",
-      "Replace cloud storage",
-      "Avoid testing"
-    ],
-    answer: 0
-  },
-  {
-    id: 8,
-    question: "Why are containers useful?",
-    options: [
-      "They help package apps consistently",
-      "They replace networking",
-      "They only store backups",
-      "They disable scaling"
-    ],
-    answer: 0
-  },
-  {
-    id: 9,
-    question: "What does Kubernetes help manage?",
-    options: [
-      "Spreadsheet formulas",
-      "Containerized applications at scale",
-      "Only DNS names",
-      "Only object storage"
-    ],
-    answer: 1
-  },
-  {
-    id: 10,
-    question: "What does a load balancer do?",
-    options: [
-      "Stores files",
-      "Distributes traffic across targets",
-      "Replaces IAM",
-      "Writes Dockerfiles"
-    ],
-    answer: 1
-  }
+  { id: 1, question: "What is one major benefit of cloud computing?", options: ["Only buying more hardware", "On-demand scalable resources", "Removing all security needs", "Avoiding networking"], answer: 1 },
+  { id: 2, question: "What does IAM mainly control?", options: ["Video streaming", "Access and permissions", "Laptop performance", "Code formatting"], answer: 1 },
+  { id: 3, question: "What is EC2 used for?", options: ["Running virtual servers", "Only DNS records", "Only object storage", "Only certificates"], answer: 0 },
+  { id: 4, question: "What does S3 store?", options: ["Objects in buckets", "Only Kubernetes pods", "Only passwords", "Only IP addresses"], answer: 0 },
+  { id: 5, question: "What is a VPC?", options: ["A virtual network", "A video processor", "A code editor", "A logging format"], answer: 0 },
+  { id: 6, question: "Why is CloudWatch useful?", options: ["It replaces IAM", "It provides monitoring and visibility", "It removes all alarms", "It only runs containers"], answer: 1 },
+  { id: 7, question: "What is one main goal of CI/CD?", options: ["Make delivery more reliable and automated", "Stop all deployments", "Replace cloud storage", "Avoid testing"], answer: 0 },
+  { id: 8, question: "Why are containers useful?", options: ["They help package apps consistently", "They replace networking", "They only store backups", "They disable scaling"], answer: 0 },
+  { id: 9, question: "What does Kubernetes help manage?", options: ["Spreadsheet formulas", "Containerized applications at scale", "Only DNS names", "Only object storage"], answer: 1 },
+  { id: 10, question: "What does a load balancer do?", options: ["Stores files", "Distributes traffic across targets", "Replaces IAM", "Writes Dockerfiles"], answer: 1 }
 ];
 
 let selectedLessonId = 1;
@@ -791,8 +1037,11 @@ const lessonSummary = document.getElementById("lessonSummary");
 const lessonLevelBadge = document.getElementById("lessonLevelBadge");
 const lessonObjectives = document.getElementById("lessonObjectives");
 const lessonContent = document.getElementById("lessonContent");
+const lessonDiagram = document.getElementById("lessonDiagram");
 const lessonCodeBlock = document.getElementById("lessonCodeBlock");
+const lessonWhyMatters = document.getElementById("lessonWhyMatters");
 const quizContainer = document.getElementById("quizContainer");
+const quizScoreBox = document.getElementById("quizScoreBox");
 
 const labList = document.getElementById("labList");
 const labLevelBadge = document.getElementById("labLevelBadge");
@@ -801,6 +1050,7 @@ const labPrompt = document.getElementById("labPrompt");
 const labDescription = document.getElementById("labDescription");
 const labPrereqs = document.getElementById("labPrereqs");
 const labSteps = document.getElementById("labSteps");
+const labCommands = document.getElementById("labCommands");
 const labResult = document.getElementById("labResult");
 
 const roadmapGrid = document.getElementById("roadmapGrid");
@@ -821,6 +1071,7 @@ const resetProgressBtn = document.getElementById("resetProgressBtn");
 const themeToggle = document.getElementById("themeToggle");
 const submitExamBtn = document.getElementById("submitExamBtn");
 const resetExamBtn = document.getElementById("resetExamBtn");
+const startPathBtn = document.getElementById("startPathBtn");
 
 const studentNameInput = document.getElementById("studentNameInput");
 const certificateTrackSelect = document.getElementById("certificateTrackSelect");
@@ -836,37 +1087,38 @@ const certificateLessonsDone = document.getElementById("certificateLessonsDone")
 const certificateLabsDone = document.getElementById("certificateLabsDone");
 const certificateExamDone = document.getElementById("certificateExamDone");
 const certificateStatusText = document.getElementById("certificateStatusText");
+const certificateIdPreview = document.getElementById("certificateIdPreview");
 
 function getLessonProgress() {
   return JSON.parse(localStorage.getItem("youooo-cloud-progress") || "{}");
 }
-
 function saveLessonProgress(progress) {
   localStorage.setItem("youooo-cloud-progress", JSON.stringify(progress));
 }
-
 function getLabProgress() {
   return JSON.parse(localStorage.getItem("youooo-cloud-labs") || "{}");
 }
-
 function saveLabProgress(progress) {
   localStorage.setItem("youooo-cloud-labs", JSON.stringify(progress));
 }
-
 function getExamBestScore() {
   return Number(localStorage.getItem("youooo-cloud-exam-best") || 0);
 }
-
 function saveExamBestScore(score) {
   localStorage.setItem("youooo-cloud-exam-best", String(score));
 }
-
 function isLessonComplete(id) {
   return !!getLessonProgress()[id];
 }
-
 function isLabDone(id) {
   return !!getLabProgress()[id];
+}
+
+function generateCertificateId(name) {
+  const safe = (name || "USER").replace(/\s+/g, "").slice(0, 3).toUpperCase() || "USR";
+  const exam = String(getExamBestScore()).padStart(2, "0");
+  const lessonsDone = String(Object.keys(getLessonProgress()).filter((id) => getLessonProgress()[id]).length).padStart(2, "0");
+  return `YC-${safe}-${lessonsDone}${exam}`;
 }
 
 function updateStats() {
@@ -905,6 +1157,7 @@ function updateStats() {
     examScore >= 70;
 
   certificateStatusText.textContent = completedStatus ? "Ready" : "In Progress";
+  certificateIdPreview.textContent = generateCertificateId(studentNameInput.value.trim());
 }
 
 function renderLessons() {
@@ -950,39 +1203,61 @@ function renderLessons() {
 
 function renderQuiz(lesson) {
   quizContainer.innerHTML = "";
+  quizScoreBox.textContent = "Answer the lesson quiz to see your score.";
 
-  const q = lesson.quiz;
-  const title = document.createElement("p");
-  title.innerHTML = `<strong>${q.question}</strong>`;
-  quizContainer.appendChild(title);
+  lesson.quiz.forEach((q, qIndex) => {
+    const card = document.createElement("div");
+    card.className = "quiz-question-card";
 
-  q.options.forEach((option, index) => {
-    const btn = document.createElement("button");
-    btn.className = "quiz-option";
-    btn.textContent = option;
+    const optionsHtml = q.options
+      .map((option, optionIndex) => `
+        <button class="quiz-option" data-q-index="${qIndex}" data-option-index="${optionIndex}">
+          ${option}
+        </button>
+      `)
+      .join("");
 
+    card.innerHTML = `
+      <h4>Question ${qIndex + 1}: ${q.question}</h4>
+      <div class="quiz-options">${optionsHtml}</div>
+      <div class="quiz-feedback" id="quiz-feedback-${qIndex}" style="display:none;"></div>
+    `;
+
+    quizContainer.appendChild(card);
+  });
+
+  const userAnswers = new Array(lesson.quiz.length).fill(null);
+
+  quizContainer.querySelectorAll(".quiz-option").forEach((btn) => {
     btn.addEventListener("click", () => {
-      [...quizContainer.querySelectorAll(".quiz-option")].forEach((b) => {
+      const qIndex = Number(btn.dataset.qIndex);
+      const optionIndex = Number(btn.dataset.optionIndex);
+      const q = lesson.quiz[qIndex];
+
+      userAnswers[qIndex] = optionIndex;
+
+      const questionButtons = quizContainer.querySelectorAll(`.quiz-option[data-q-index="${qIndex}"]`);
+      questionButtons.forEach((b) => {
         b.disabled = true;
+        const idx = Number(b.dataset.optionIndex);
+        if (idx === q.answer) b.classList.add("correct");
+        else if (idx === optionIndex && optionIndex !== q.answer) b.classList.add("wrong");
       });
 
-      const feedback = document.createElement("div");
-      feedback.className = "quiz-feedback";
+      const feedback = document.getElementById(`quiz-feedback-${qIndex}`);
+      feedback.style.display = "block";
+      feedback.innerHTML =
+        optionIndex === q.answer
+          ? `<strong>Correct.</strong> ${q.explanation}`
+          : `<strong>Not correct.</strong> ${q.explanation}`;
 
-      if (index === q.answer) {
-        btn.classList.add("correct");
-        feedback.innerHTML = `<strong>Correct.</strong> ${q.explanation}`;
-      } else {
-        btn.classList.add("wrong");
-        const correctButton = quizContainer.querySelectorAll(".quiz-option")[q.answer];
-        if (correctButton) correctButton.classList.add("correct");
-        feedback.innerHTML = `<strong>Not correct.</strong> ${q.explanation}`;
+      const answeredCount = userAnswers.filter((v) => v !== null).length;
+      if (answeredCount === lesson.quiz.length) {
+        const correctCount = userAnswers.filter((ans, idx) => ans === lesson.quiz[idx].answer).length;
+        const percent = Math.round((correctCount / lesson.quiz.length) * 100);
+        quizScoreBox.textContent = `Lesson quiz score: ${correctCount}/${lesson.quiz.length} (${percent}%)`;
       }
-
-      quizContainer.appendChild(feedback);
     });
-
-    quizContainer.appendChild(btn);
   });
 }
 
@@ -994,7 +1269,9 @@ function renderSelectedLesson() {
   lessonSummary.textContent = lesson.summary;
   lessonLevelBadge.textContent = lesson.level;
   lessonContent.innerHTML = lesson.content;
+  lessonDiagram.textContent = lesson.diagram;
   lessonCodeBlock.textContent = lesson.example;
+  lessonWhyMatters.textContent = lesson.whyMatters;
 
   lessonObjectives.innerHTML = lesson.objectives
     .map((objective) => `<span class="objective-chip">${objective}</span>`)
@@ -1050,6 +1327,7 @@ function renderSelectedLab() {
   labDescription.innerHTML = lab.description;
   labPrereqs.textContent = lab.prereqs;
   labSteps.innerHTML = lab.steps;
+  labCommands.textContent = lab.commands;
   labResult.textContent = lab.result;
 }
 
@@ -1134,6 +1412,7 @@ function updateCertificatePreview() {
   certificateNamePreview.textContent = name;
   certificateTrackPreview.textContent = track;
   certificateDatePreview.textContent = today;
+  certificateIdPreview.textContent = generateCertificateId(name);
 }
 
 function loadTheme() {
@@ -1253,8 +1532,22 @@ printCertificateBtn.addEventListener("click", () => {
   window.print();
 });
 
-studentNameInput.addEventListener("input", updateCertificatePreview);
+studentNameInput.addEventListener("input", () => {
+  updateCertificatePreview();
+  updateStats();
+});
 certificateTrackSelect.addEventListener("change", updateCertificatePreview);
+
+startPathBtn.addEventListener("click", () => {
+  selectedLessonId = 1;
+  document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+  document.querySelectorAll(".tab-content").forEach((c) => c.classList.remove("active"));
+  document.querySelector('.tab-btn[data-tab="academyTab"]').classList.add("active");
+  document.getElementById("academyTab").classList.add("active");
+  renderLessons();
+  renderSelectedLesson();
+  document.querySelector(".lesson-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+});
 
 function init() {
   loadTheme();
